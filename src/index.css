@@ -1,8 +1,8 @@
 @import "tailwindcss";
-@import '@fontsource/parkinsans';
-@import '@fontsource/inter/400.css';
-@import '@fontsource/inter/500.css';
-@import '@fontsource/inter/600.css';
+@import "@fontsource/parkinsans";
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/500.css";
+@import "@fontsource/inter/600.css";
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));

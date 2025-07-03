@@ -1,11 +1,12 @@
-import { createFileRoute, Outlet } from "@tanstack/react-router";
+import { SiGithub } from "@icons-pack/react-simple-icons";
+import { Outlet, createFileRoute } from "@tanstack/react-router";
+
+import { Button } from "@/components/ui/button";
 import {
   NavigationMenu,
   NavigationMenuItem,
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
-import { SiGithub } from "@icons-pack/react-simple-icons";
-import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/_landing")({
   component: LandingLayout,
