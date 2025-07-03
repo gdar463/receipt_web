@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { createFileRoute } from "@tanstack/react-router";
 
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute("/_landing/")({
   component: Index,
 });
 
@@ -16,8 +16,8 @@ function Index() {
           Save and Filter all of your transactions
         </div>
         <div className="flex space mt-1 mx-auto space-x-8">
-          <Button className="font-[Inter] font-medium text-xl h-12 w-30 rounded-md px-6 has-[>svg]:px-4">
-            Sign up
+          <Button className="font-[Inter] font-medium text-xl h-12 w-30 rounded-md px-6 has-[>svg]:px-4 as child">
+            <a>Sign up</a>
           </Button>
           <Button
             variant="secondary"
