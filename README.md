@@ -2,7 +2,7 @@
 
 Webiste for my Receipt Tracker
 
-Uses for everything this [API](https://github/gdar463/receipt_api)
+Uses for everything this [API](https://github.com/gdar463/receipt_api)
 
 ## License
 
