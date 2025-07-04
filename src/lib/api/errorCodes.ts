@@ -2,7 +2,7 @@ export type ErrorCodes =
   | "InvalidCreds"
   | "Unauthenticated"
   | "InvalidToken"
-  | "UsernameAlreadyExists"
+  | "UserAlreadyExists"
   | "ComponentNotFound"
   | "CountryNotFound"
   | "CurrencyNotFound"
@@ -14,4 +14,5 @@ export type ErrorCodes =
   | "FailedDeletion"
   | "UserDoesntExist"
   | "GenericError"
+  | "NotFound"
   | "INVALID";
