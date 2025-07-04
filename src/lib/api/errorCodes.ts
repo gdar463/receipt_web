@@ -1,0 +1,17 @@
+export type ErrorCodes =
+  | "InvalidCreds"
+  | "Unauthenticated"
+  | "InvalidToken"
+  | "UsernameAlreadyExists"
+  | "ComponentNotFound"
+  | "CountryNotFound"
+  | "CurrencyNotFound"
+  | "ValidationFailed"
+  | "NoGoogleLinked"
+  | "GoogleFailed"
+  | "ReceiptNotFound"
+  | "NameAlreadyExists"
+  | "FailedDeletion"
+  | "UserDoesntExist"
+  | "GenericError"
+  | "INVALID";
