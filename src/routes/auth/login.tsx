@@ -1,6 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
-import { Link, createFileRoute, redirect } from "@tanstack/react-router";
+import { Link, createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { useCookies } from "react-cookie";
 import { useForm } from "react-hook-form";
@@ -34,6 +34,7 @@ export const Route = createFileRoute("/auth/login")({
 function RouteComponent() {
   const [apiError, setError] = useState(new ApiError());
   const [_cookies, setCookie] = useCookies(["session"]);
+  const navigate = useNavigate({ from: "/auth/login" });
 
   const mutation = useMutation({
     mutationFn: apiLogin,
@@ -44,7 +45,7 @@ function RouteComponent() {
     },
     onSuccess(data) {
       setCookie("session", data.token, { path: "/" });
-      throw redirect({ to: "/dashboard" });
+      navigate({ to: "/dashboard" });
     },
   });
 
