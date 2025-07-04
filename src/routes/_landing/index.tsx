@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { Link, createFileRoute } from "@tanstack/react-router";
 
 import { Button } from "@/components/ui/button";
 
@@ -16,15 +16,19 @@ function Index() {
         <div className="font-extralight text-2xl/relaxed">
           Save and Filter all of your transactions
         </div>
-        <div className="flex space mt-1 mx-auto space-x-8">
-          <Button className="font-[Inter] font-medium text-xl h-12 w-30 rounded-md px-6 has-[>svg]:px-4 as child">
-            <a>Sign up</a>
+        <div className="font-[Inter] flex space mt-1 mx-auto space-x-8">
+          <Button
+            className="text-xl h-12 w-30 rounded-md px-6 has-[>svg]:px-4"
+            asChild
+          >
+            <Link to="/auth/signup">Sign Up</Link>
           </Button>
           <Button
             variant="secondary"
-            className="font-[Inter] text-xl h-12 w-30 rounded-md has-[>svg]:px-4"
+            className="text-xl h-12 w-30 rounded-md has-[>svg]:px-4"
+            asChild
           >
-            Sign in
+            <Link to="/auth/login">Sign In</Link>
           </Button>
         </div>
       </div>

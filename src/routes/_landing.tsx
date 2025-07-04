@@ -1,5 +1,5 @@
 import { SiGithub } from "@icons-pack/react-simple-icons";
-import { Outlet, createFileRoute } from "@tanstack/react-router";
+import { Link, Outlet, createFileRoute } from "@tanstack/react-router";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -43,8 +43,8 @@ function NavBar() {
               </Button>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <Button variant="secondary" className="font-medium">
-                Sign in
+              <Button variant="secondary" className="font-medium" asChild>
+                <Link to="/auth/login">Sign In</Link>
               </Button>
             </NavigationMenuItem>
           </NavigationMenuList>
