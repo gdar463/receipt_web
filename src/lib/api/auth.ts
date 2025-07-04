@@ -1,48 +1,23 @@
-import ky from "ky";
 import type z from "zod";
 
 import type { loginSchema } from "../schemas/login";
 import type { ApiMeResponse } from "../schemas/me";
 
-import { ApiError } from "./errors";
-
-const API_URL = import.meta.env.API_URL || "http://localhost:3000/api";
+import { get, post } from "./wrapper";
 
 export async function apiLogin(
   formData: z.infer<typeof loginSchema>,
 ): Promise<{ token: string }> {
-  const res = await ky.post(API_URL + "/auth/login", {
+  const res = await post("/auth/login", {
     json: formData,
-    hooks: {
-      beforeError: [
-        async (error) => {
-          const { response } = error;
-          if (response && response.body) {
-            throw new ApiError(await response.json(), response.status);
-          }
-          return error;
-        },
-      ],
-    },
   });
   return res.json();
 }
 
 export async function apiMe(token: string): Promise<ApiMeResponse> {
-  const res = await ky.get(API_URL + "/me", {
+  const res = await get("/me", {
     headers: {
       Authorization: `Bearer ${token}`,
-    },
-    hooks: {
-      beforeError: [
-        async (error) => {
-          const { response } = error;
-          if (response && response.body) {
-            throw new ApiError(await response.json(), response.status);
-          }
-          return error;
-        },
-      ],
     },
   });
   return res.json();
