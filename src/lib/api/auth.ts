@@ -2,6 +2,7 @@ import ky from "ky";
 import type z from "zod";
 
 import type { loginSchema } from "../schemas/login";
+import type { ApiMeResponse } from "../schemas/me";
 
 import { ApiError } from "./errors";
 
@@ -12,6 +13,26 @@ export async function apiLogin(
 ): Promise<{ token: string }> {
   const res = await ky.post(API_URL + "/auth/login", {
     json: formData,
+    hooks: {
+      beforeError: [
+        async (error) => {
+          const { response } = error;
+          if (response && response.body) {
+            throw new ApiError(await response.json(), response.status);
+          }
+          return error;
+        },
+      ],
+    },
+  });
+  return res.json();
+}
+
+export async function apiMe(token: string): Promise<ApiMeResponse> {
+  const res = await ky.get(API_URL + "/me", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
     hooks: {
       beforeError: [
         async (error) => {

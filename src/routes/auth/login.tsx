@@ -43,7 +43,8 @@ function RouteComponent() {
       }
     },
     onSuccess(data) {
-      setCookie("session", data.token);
+      setCookie("session", data.token, { path: "/" });
+      throw redirect({ to: "/dashboard" });
     },
   });
 
