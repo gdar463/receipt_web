@@ -25,7 +25,7 @@ import { Input } from "@/components/ui/input";
 import { LoginAlert } from "@/lib/alerts/login";
 import { apiLogin } from "@/lib/api/auth";
 import { ApiError } from "@/lib/api/errors";
-import { loginSchema } from "@/lib/schemas/login";
+import { loginSchema } from "@s/auth/login";
 
 export const Route = createFileRoute("/auth/login")({
   component: RouteComponent,

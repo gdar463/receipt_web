@@ -25,7 +25,7 @@ import { Input } from "@/components/ui/input";
 import { SignupAlert } from "@/lib/alerts/signup";
 import { apiSignup } from "@/lib/api/auth";
 import { ApiError } from "@/lib/api/errors";
-import { signupSchema } from "@/lib/schemas/signup";
+import { signupSchema } from "@s/auth/signup";
 
 export const Route = createFileRoute("/auth/signup")({
   component: RouteComponent,

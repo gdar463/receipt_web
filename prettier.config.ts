@@ -5,7 +5,7 @@ const config: Config = {
   importOrder: [
     "^(bun|path|os|sys|stream)",
     "<THIRD_PARTY_MODULES>",
-    "^@/.*",
+    "^@[s]?/.*",
     "^../",
     "^./",
   ],

@@ -1,8 +1,8 @@
 import type z from "zod";
 
-import type { loginSchema } from "../schemas/login";
-import type { ApiMeResponse } from "../schemas/me";
-import type { signupSchema } from "../schemas/signup";
+import type { loginSchema } from "@s/auth/login";
+import type { ApiMeResponse } from "@s/auth/me";
+import type { signupSchema } from "@s/auth/signup";
 
 import { get, post } from "./wrapper";
 
