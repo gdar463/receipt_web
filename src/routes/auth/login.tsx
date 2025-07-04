@@ -29,6 +29,13 @@ import { loginSchema } from "@s/auth/login";
 
 export const Route = createFileRoute("/auth/login")({
   component: RouteComponent,
+  head: () => ({
+    meta: [
+      {
+        title: "Login - Receipt Tracker",
+      },
+    ],
+  }),
 });
 
 function RouteComponent() {
