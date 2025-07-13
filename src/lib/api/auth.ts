@@ -18,7 +18,6 @@ export async function apiLogin(
 export async function apiSignup(
   formData: z.infer<typeof signupSchema>,
 ): Promise<{ token: string }> {
-  console.log(formData);
   const res = await post("/auth/signup", {
     json: formData,
   });
