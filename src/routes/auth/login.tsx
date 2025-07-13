@@ -1,6 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { Link, createFileRoute, useNavigate } from "@tanstack/react-router";
+import { zodValidator } from "@tanstack/zod-adapter";
 import { useState } from "react";
 import { useCookies } from "react-cookie";
 import { useForm } from "react-hook-form";
@@ -25,10 +26,12 @@ import { Input } from "@/components/ui/input";
 import { LoginAlert } from "@/lib/alerts/login";
 import { apiLogin } from "@/lib/api/auth";
 import { ApiError } from "@/lib/api/errors";
+import { authSearchSchema } from "@s/auth";
 import { loginSchema } from "@s/auth/login";
 
 export const Route = createFileRoute("/auth/login")({
   component: RouteComponent,
+  validateSearch: zodValidator(authSearchSchema),
   head: () => ({
     meta: [
       {
@@ -41,6 +44,7 @@ export const Route = createFileRoute("/auth/login")({
 function RouteComponent() {
   const [apiError, setError] = useState(new ApiError());
   const [_cookies, setCookie] = useCookies(["session"]);
+  const { redirect } = Route.useSearch();
   const navigate = useNavigate({ from: "/auth/login" });
 
   const mutation = useMutation({
@@ -52,7 +56,7 @@ function RouteComponent() {
     },
     onSuccess(data) {
       setCookie("session", data.token, { path: "/" });
-      navigate({ to: "/dashboard" });
+      navigate({ to: redirect });
     },
   });
 
