@@ -18,6 +18,9 @@ function LandingLayout() {
     <div className="flex flex-col">
       <NavBar />
       <Outlet />
+      <div className="fixed bottom-4 right-4 z-50">
+        <ThemeSelector />
+      </div>
     </div>
   );
 }
@@ -50,9 +53,6 @@ function NavBar() {
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
-      </div>
-      <div className="fixed bottom-4 right-4 z-50">
-        <ThemeSelector />
       </div>
     </header>
   );
