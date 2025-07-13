@@ -1,6 +1,7 @@
 import { SiGithub } from "@icons-pack/react-simple-icons";
 import { Link, Outlet, createFileRoute } from "@tanstack/react-router";
 
+import { ThemeSelector } from "@/components/theme-selector";
 import { Button } from "@/components/ui/button";
 import {
   NavigationMenu,
@@ -49,6 +50,9 @@ function NavBar() {
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
+      </div>
+      <div className="fixed bottom-4 right-4 z-50">
+        <ThemeSelector />
       </div>
     </header>
   );
