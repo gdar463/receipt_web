@@ -24,7 +24,7 @@ function LandingLayout() {
 
 function NavBar() {
   return (
-    <header className="w-full bg-background">
+    <header className="w-full bg-background border-b">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         <div className="flex items-center gap-2">
           <span className="text-lg font-semibold">Receipt Tracker</span>
