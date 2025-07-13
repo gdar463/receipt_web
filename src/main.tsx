@@ -6,6 +6,7 @@ import { CookiesProvider } from "react-cookie";
 import { createRoot } from "react-dom/client";
 
 import "./index.css";
+import { AuthProvider, useAuth } from "./lib/auth";
 import { routeTree } from "./routeTree.gen";
 
 const queryClient = new QueryClient({
@@ -17,20 +18,41 @@ const queryClient = new QueryClient({
   },
 });
 
-const router = createRouter({ routeTree });
+const router = createRouter({
+  routeTree,
+  context: {
+    auth: undefined!,
+  },
+});
+
 declare module "@tanstack/react-router" {
   interface Register {
     router: typeof router;
   }
 }
 
+function InnerApp() {
+  const auth = useAuth();
+  return (
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} context={{ auth }} />
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
+  );
+}
+
+function App() {
+  return (
+    <AuthProvider>
+      <InnerApp />
+    </AuthProvider>
+  );
+}
+
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <CookiesProvider>
-      <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />
-        <ReactQueryDevtools initialIsOpen={false} />
-      </QueryClientProvider>
+      <App />
     </CookiesProvider>
   </StrictMode>,
 );

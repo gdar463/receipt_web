@@ -3,7 +3,6 @@ import { useMutation } from "@tanstack/react-query";
 import { Link, createFileRoute, useNavigate } from "@tanstack/react-router";
 import { zodValidator } from "@tanstack/zod-adapter";
 import { useState } from "react";
-import { useCookies } from "react-cookie";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -26,6 +25,7 @@ import { Input } from "@/components/ui/input";
 import { LoginAlert } from "@/lib/alerts/login";
 import { apiLogin } from "@/lib/api/auth";
 import { ApiError } from "@/lib/api/errors";
+import { useAuth } from "@/lib/auth";
 import { authSearchSchema } from "@s/auth";
 import { loginSchema } from "@s/auth/login";
 
@@ -43,7 +43,7 @@ export const Route = createFileRoute("/auth/login")({
 
 function RouteComponent() {
   const [apiError, setError] = useState(new ApiError());
-  const [_cookies, setCookie] = useCookies(["session"]);
+  const auth = useAuth();
   const { redirect } = Route.useSearch();
   const navigate = useNavigate({ from: "/auth/login" });
 
@@ -55,7 +55,7 @@ function RouteComponent() {
       }
     },
     onSuccess(data) {
-      setCookie("session", data.token, { path: "/" });
+      auth.login(data);
       navigate({ to: redirect });
     },
   });

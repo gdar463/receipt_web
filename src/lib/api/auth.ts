@@ -4,11 +4,13 @@ import type { loginSchema } from "@s/auth/login";
 import type { ApiMeResponse } from "@s/auth/me";
 import type { signupSchema } from "@s/auth/signup";
 
+import type { userSchema } from "../schemas/auth";
+
 import { get, post } from "./wrapper";
 
 export async function apiLogin(
   formData: z.infer<typeof loginSchema>,
-): Promise<{ token: string }> {
+): Promise<z.infer<typeof userSchema>> {
   const res = await post("/auth/login", {
     json: formData,
   });
@@ -17,7 +19,7 @@ export async function apiLogin(
 
 export async function apiSignup(
   formData: z.infer<typeof signupSchema>,
-): Promise<{ token: string }> {
+): Promise<z.infer<typeof userSchema>> {
   const res = await post("/auth/signup", {
     json: formData,
   });
