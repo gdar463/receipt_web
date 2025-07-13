@@ -33,10 +33,12 @@ declare module "@tanstack/react-router" {
 
 function InnerApp() {
   const auth = useAuth();
+  const queryActive = localStorage.getItem("receipts.queryDev");
+
   return (
     <QueryClientProvider client={queryClient}>
       <RouterProvider router={router} context={{ auth }} />
-      <ReactQueryDevtools initialIsOpen={false} />
+      {queryActive ? <ReactQueryDevtools initialIsOpen={false} /> : ""}
     </QueryClientProvider>
   );
 }
