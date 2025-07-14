@@ -1,6 +1,8 @@
 import { type LucideIcon, Settings, UserRound, X } from "lucide-react";
 import { type Dispatch, type ReactNode, type SetStateAction } from "react";
 
+import { ProfileTab } from "./settings/profile";
+import { SettingsTab } from "./settings/settings";
 import { Button } from "./ui/button";
 import {
   Dialog,
@@ -24,16 +26,19 @@ const settings: {
   name: string;
   key: SettingsKeys;
   icon: LucideIcon;
+  tab: () => ReactNode;
 }[] = [
   {
     name: "Profile",
     key: "profile",
     icon: UserRound,
+    tab: ProfileTab,
   },
   {
     name: "Settings",
     key: "settings",
     icon: Settings,
+    tab: SettingsTab,
   },
 ];
 
@@ -116,8 +121,13 @@ export function SettingsDialog({
                 })}
               </SidebarContent>
             </Sidebar>
-            <TabsContent value="profile">Profile</TabsContent>
-            <TabsContent value="settings">Settings</TabsContent>
+            {settings.map((item) => {
+              return (
+                <TabsContent key={item.key} value={item.key}>
+                  <item.tab />
+                </TabsContent>
+              );
+            })}
           </SidebarProvider>
         </Tabs>
       </DialogContent>
