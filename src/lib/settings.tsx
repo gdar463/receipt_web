@@ -42,7 +42,7 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
   const setSetting = useCallback(
     <T extends keyof Settings>(key: T, value: Settings[T]) => {
       setSettings({ ...settings, [key]: value });
-      setStoreSettings(settings);
+      setStoreSettings({ ...settings, [key]: value });
     },
     [],
   );
