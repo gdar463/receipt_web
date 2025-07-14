@@ -106,7 +106,7 @@ function LogoutDialog() {
           Logout
         </DropdownMenuItem>
       </DialogTrigger>
-      <DialogContent>
+      <DialogContent className="[&>button]:hidden">
         <DialogHeader>
           <DialogTitle className="font-semibold text-lg">Logout</DialogTitle>
           <DialogDescription className="text-base">
