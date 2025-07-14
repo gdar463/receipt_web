@@ -52,7 +52,7 @@ export function ThemeProvider({
     theme,
     setTheme: (theme: string) => {
       localStorage.setItem(storageKey, theme);
-      // @ts-ignore
+      // @ts-expect-error For compatability we need to accept theme as a string, not a type
       setTheme(theme);
     },
   };
