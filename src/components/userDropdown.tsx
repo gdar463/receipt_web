@@ -2,10 +2,11 @@ import { SiGithub } from "@icons-pack/react-simple-icons";
 import { DialogTitle } from "@radix-ui/react-dialog";
 import { useNavigate } from "@tanstack/react-router";
 import { CodeXml, LogOut, Settings, UserRound } from "lucide-react";
-import type { ReactNode } from "react";
+import { type ReactNode, useState } from "react";
 
 import { useAuth } from "@/lib/auth";
 
+import { SettingsDialog, type SettingsState } from "./settingsDialog";
 import { Button } from "./ui/button";
 import {
   Dialog,
@@ -34,29 +35,50 @@ export function UserDropdown({
   className?: string | undefined;
   children: ReactNode;
 }) {
+  const [open, setOpen] = useState<boolean>(false);
+  const [dialog, setDialog] = useState<SettingsState>({
+    open: false,
+    tab: "settings",
+  });
   const { isMobile } = useSidebar();
 
   return (
-    <DropdownMenu>
+    <DropdownMenu open={open} onOpenChange={setOpen}>
       <DropdownMenuTrigger asChild>
         <Button size="user" variant="ghost" className={className}>
           {children}
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent
-        className="w-48 ml-[1.125rem]"
+        className={`w-48 ml-[1.125rem] ${dialog.open ? "hidden" : ""}`}
         side={isMobile ? "bottom" : "right"}
         align="end"
       >
         <DropdownMenuLabel className="font-semibold">Account</DropdownMenuLabel>
-        <DropdownMenuItem>
-          <UserRound className="text-foreground" />
-          Profile
-        </DropdownMenuItem>
-        <DropdownMenuItem>
-          <Settings className="text-foreground" />
-          Settings
-        </DropdownMenuItem>
+        <SettingsDialog
+          className="w-full align-start"
+          setOpen={setOpen}
+          state={{ dialog, setDialog }}
+        >
+          <DropdownMenuItem
+            onSelect={(event) => {
+              setDialog({ open: true, tab: "profile" });
+              event.preventDefault();
+            }}
+          >
+            <UserRound className="text-foreground" />
+            Profile
+          </DropdownMenuItem>
+          <DropdownMenuItem
+            onSelect={(event) => {
+              setDialog({ open: true, tab: "settings" });
+              event.preventDefault();
+            }}
+          >
+            <Settings className="text-foreground" />
+            Settings
+          </DropdownMenuItem>
+        </SettingsDialog>
         <DropdownMenuSeparator />
         <a
           href="https://github.com/gdar463/receipt_api"
