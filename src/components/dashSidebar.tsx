@@ -1,6 +1,7 @@
 import { UserRound } from "lucide-react";
 
 import { useAuth } from "@/lib/auth";
+import { useSettings } from "@/lib/settings";
 
 import {
   Sidebar,
@@ -15,6 +16,8 @@ import { UserDropdown } from "./userDropdown";
 
 export function DashSidebar() {
   const auth = useAuth();
+  const settings = useSettings();
+
   return (
     <Sidebar>
       <SidebarHeader>
@@ -34,7 +37,9 @@ export function DashSidebar() {
                 <div className="flex flex-col ml-1">
                   <span className="text-sm">{auth.user?.displayName}</span>
                   <span className="text-xs font-normal">
-                    {auth.user?.email}
+                    {settings.options?.streamerMode
+                      ? "•••••@•••••.•••"
+                      : auth.user?.email}
                   </span>
                 </div>
               </UserDropdown>
