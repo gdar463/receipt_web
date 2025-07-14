@@ -8,11 +8,13 @@ import {
 import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 
 import type { AuthContext } from "@/lib/auth";
+import type { SettingsContext } from "@/lib/settings";
 
 import { ThemeProvider } from "../components/themeProvider";
 
 interface RouterContext {
   auth: AuthContext;
+  settings: SettingsContext;
   devTools: boolean;
 }
 

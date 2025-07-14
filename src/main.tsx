@@ -10,6 +10,7 @@ import { createRoot } from "react-dom/client";
 
 import "./index.css";
 import { AuthProvider, useAuth } from "./lib/auth";
+import { SettingsProvider, useSettings } from "./lib/settings";
 import { routeTree } from "./routeTree.gen";
 
 const queryClient = new QueryClient({
@@ -25,6 +26,7 @@ const router = createRouter({
   routeTree,
   context: {
     auth: undefined!,
+    settings: undefined!,
     devTools: undefined!,
   },
 });
@@ -37,13 +39,14 @@ declare module "@tanstack/react-router" {
 
 function InnerApp() {
   const auth = useAuth();
+  const settings = useSettings();
   const devActive = localStorage.getItem("receipts.dev");
 
   return (
     <QueryClientProvider client={queryClient}>
       <RouterProvider
         router={router}
-        context={{ auth, devTools: !!devActive }}
+        context={{ auth, settings, devTools: !!devActive }}
       />
     </QueryClientProvider>
   );
@@ -52,7 +55,9 @@ function InnerApp() {
 function App() {
   return (
     <AuthProvider>
-      <InnerApp />
+      <SettingsProvider>
+        <InnerApp />
+      </SettingsProvider>
     </AuthProvider>
   );
 }
