@@ -2,6 +2,7 @@ import { SiGithub } from "@icons-pack/react-simple-icons";
 import { DialogTitle } from "@radix-ui/react-dialog";
 import { useNavigate } from "@tanstack/react-router";
 import { CodeXml, LogOut, Settings, UserRound } from "lucide-react";
+import type { ReactNode } from "react";
 
 import { useAuth } from "@/lib/auth";
 
@@ -25,12 +26,18 @@ import {
 } from "./ui/dropdown-menu";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 
-export function UserDropdown() {
+export function UserDropdown({
+  className,
+  children,
+}: {
+  className?: string | undefined;
+  children: ReactNode;
+}) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button size="icon" variant="ghost">
-          <UserRound className="size-7" />
+        <Button size="user" variant="ghost" className={className}>
+          {children}
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-48" align="start">
