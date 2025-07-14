@@ -11,6 +11,7 @@ export type User = {
   id: string;
   displayName: string;
   token: string;
+  email: string;
 };
 
 export interface AuthContext {

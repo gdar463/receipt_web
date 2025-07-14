@@ -4,6 +4,7 @@ export const userSchema = z.object({
   id: z.string(),
   displayName: z.string(),
   token: z.string(),
+  email: z.string(),
 });
 
 export const authSearchSchema = z.object({
