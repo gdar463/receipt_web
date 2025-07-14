@@ -1,5 +1,4 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { RouterProvider, createRouter } from "@tanstack/react-router";
 import { StrictMode } from "react";
 import { CookiesProvider } from "react-cookie";
@@ -22,6 +21,7 @@ const router = createRouter({
   routeTree,
   context: {
     auth: undefined!,
+    devTools: undefined!,
   },
 });
 
@@ -33,12 +33,14 @@ declare module "@tanstack/react-router" {
 
 function InnerApp() {
   const auth = useAuth();
-  const queryActive = localStorage.getItem("receipts.queryDev");
+  const devActive = localStorage.getItem("receipts.dev");
 
   return (
     <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} context={{ auth }} />
-      {queryActive ? <ReactQueryDevtools initialIsOpen={false} /> : ""}
+      <RouterProvider
+        router={router}
+        context={{ auth, devTools: !!devActive }}
+      />
     </QueryClientProvider>
   );
 }
