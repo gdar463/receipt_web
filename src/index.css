@@ -1,7 +1,4 @@
 @import "tailwindcss";
-@import "@fontsource/parkinsans";
-@import "@fontsource-variable/inter";
-@import "@fontsource-variable/montserrat";
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
@@ -42,6 +39,7 @@
 }
 
 @theme {
+  --font-dm: "DM Sans Variable", var(--font-sans);
   --font-inter: "Inter Variable", var(--font-sans);
   --font-montserrat: "Montserrat Variable", var(--font-sans);
 }

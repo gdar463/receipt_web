@@ -1,3 +1,7 @@
+import "@fontsource-variable/dm-sans/wght.css";
+import "@fontsource-variable/inter/wght.css";
+import "@fontsource-variable/montserrat/wght.css";
+import "@fontsource/parkinsans/index.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { RouterProvider, createRouter } from "@tanstack/react-router";
 import { StrictMode } from "react";
