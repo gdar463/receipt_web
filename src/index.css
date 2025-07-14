@@ -1,12 +1,14 @@
 @import "tailwindcss";
 @import "@fontsource/parkinsans";
 @import "@fontsource-variable/inter";
+@import "@fontsource-variable/montserrat";
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
 :root {
   --inter: "Inter Variable";
+  --montserrat: "Montserrat Variable";
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.129 0.042 264.695);
