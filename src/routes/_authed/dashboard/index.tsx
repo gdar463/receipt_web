@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
+import { ThemeSelector } from "@/components/theme-selector";
 import { UserDropdown } from "@/components/user-dropdown";
 
 export const Route = createFileRoute("/_authed/dashboard/")({
@@ -24,6 +25,9 @@ function RouteComponent() {
           <UserDropdown />
         </div>
       </header>
+      <div className="fixed bottom-4 right-4 z-50">
+        <ThemeSelector />
+      </div>
     </div>
   );
 }
