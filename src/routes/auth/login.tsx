@@ -112,7 +112,7 @@ function RouteComponent() {
                       <FormLabel>Password</FormLabel>
                       <FormControl>
                         <Input
-                          placeholder="password"
+                          placeholder="e.g. ••••••••"
                           type="password"
                           autoComplete="current-password"
                           {...field}
