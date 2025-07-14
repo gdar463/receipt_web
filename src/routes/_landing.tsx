@@ -1,7 +1,7 @@
 import { SiGithub } from "@icons-pack/react-simple-icons";
 import { Link, Outlet, createFileRoute } from "@tanstack/react-router";
 
-import { ThemeSelector } from "@/components/theme-selector";
+import { ThemeSelector } from "@/components/themeSelector";
 import { Button } from "@/components/ui/button";
 import {
   NavigationMenu,

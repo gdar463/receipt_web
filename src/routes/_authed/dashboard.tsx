@@ -1,7 +1,7 @@
 import { Outlet, createFileRoute } from "@tanstack/react-router";
 
-import { ThemeSelector } from "@/components/theme-selector";
-import { UserDropdown } from "@/components/user-dropdown";
+import { ThemeSelector } from "@/components/themeSelector";
+import { UserDropdown } from "@/components/userDropdown";
 
 export const Route = createFileRoute("/_authed/dashboard")({
   component: RouteComponent,

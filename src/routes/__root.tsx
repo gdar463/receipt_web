@@ -7,7 +7,7 @@ import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
 
 import type { AuthContext } from "@/lib/auth";
 
-import { ThemeProvider } from "../components/theme-provider";
+import { ThemeProvider } from "../components/themeProvider";
 
 interface RouterContext {
   auth: AuthContext;
