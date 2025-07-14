@@ -78,13 +78,23 @@ export function UserDropdown({
           <TooltipContent>Soon™</TooltipContent>
         </Tooltip>
         <DropdownMenuSeparator />
-        <LogoutDialog />
+        <LogoutDialog>
+          <DropdownMenuItem
+            onSelect={(event) => {
+              event.preventDefault();
+            }}
+            variant="destructive"
+          >
+            <LogOut className="text-destructive" />
+            Logout
+          </DropdownMenuItem>
+        </LogoutDialog>
       </DropdownMenuContent>
     </DropdownMenu>
   );
 }
 
-function LogoutDialog() {
+function LogoutDialog({ children }: { children: ReactNode }) {
   const auth = useAuth();
   const navigate = useNavigate();
 
@@ -95,17 +105,7 @@ function LogoutDialog() {
 
   return (
     <Dialog>
-      <DialogTrigger asChild>
-        <DropdownMenuItem
-          onSelect={(event) => {
-            event.preventDefault();
-          }}
-          variant="destructive"
-        >
-          <LogOut className="text-destructive" />
-          Logout
-        </DropdownMenuItem>
-      </DialogTrigger>
+      <DialogTrigger asChild>{children}</DialogTrigger>
       <DialogContent className="[&>button]:hidden">
         <DialogHeader>
           <DialogTitle className="font-semibold text-lg">Logout</DialogTitle>
