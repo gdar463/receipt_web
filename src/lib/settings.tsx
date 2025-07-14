@@ -12,10 +12,7 @@ export type Settings = {
 };
 
 export interface SettingsContext {
-  setSetting: <T extends keyof Settings>(
-    key: T,
-    value: Pick<Settings, T>,
-  ) => void;
+  setSetting: <T extends keyof Settings>(key: T, value: Settings[T]) => void;
   options: Settings | null;
 }
 
@@ -43,7 +40,7 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
   const [settings, setSettings] = useState<Settings>({ streamerMode: false });
 
   const setSetting = useCallback(
-    <T extends keyof Settings>(key: T, value: Pick<Settings, T>) => {
+    <T extends keyof Settings>(key: T, value: Settings[T]) => {
       setSettings({ ...settings, [key]: value });
       setStoreSettings(settings);
     },
