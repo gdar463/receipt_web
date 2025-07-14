@@ -30,7 +30,7 @@ export function UserDropdown() {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button size="icon" variant="ghost">
-          <UserRound className="size-6" />
+          <UserRound className="size-7" />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-48" align="start">
