@@ -24,6 +24,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
+import { useSidebar } from "./ui/sidebar";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 
 export function UserDropdown({
@@ -33,6 +34,8 @@ export function UserDropdown({
   className?: string | undefined;
   children: ReactNode;
 }) {
+  const { isMobile } = useSidebar();
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -40,7 +43,11 @@ export function UserDropdown({
           {children}
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-48" align="start">
+      <DropdownMenuContent
+        className="w-48 ml-[1.125rem]"
+        side={isMobile ? "bottom" : "right"}
+        align="end"
+      >
         <DropdownMenuLabel className="font-semibold">Account</DropdownMenuLabel>
         <DropdownMenuItem>
           <UserRound className="text-foreground" />
