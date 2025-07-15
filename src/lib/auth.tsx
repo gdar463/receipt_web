@@ -9,9 +9,11 @@ import {
 
 export type User = {
   id: string;
+  username: string;
   displayName: string;
-  token: string;
   email: string;
+  createdAt: Date;
+  token: string;
 };
 
 export interface AuthContext {
