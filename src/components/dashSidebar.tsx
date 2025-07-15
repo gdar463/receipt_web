@@ -1,12 +1,18 @@
-import { UserRound } from "lucide-react";
+import { Link } from "@tanstack/react-router";
+import { List, Plus, UserRound } from "lucide-react";
 
 import { useAuth } from "@/lib/auth";
 import { useSettings } from "@/lib/settings";
 
+import { Button } from "./ui/button";
 import {
   Sidebar,
+  SidebarContent,
   SidebarFooter,
   SidebarGroup,
+  SidebarGroupAction,
+  SidebarGroupContent,
+  SidebarGroupLabel,
   SidebarHeader,
   SidebarMenu,
   SidebarMenuItem,
@@ -28,6 +34,28 @@ export function DashSidebar() {
         </div>
         <SidebarSeparator className="relative left-[-0.5rem]" />
       </SidebarHeader>
+      <SidebarContent className="py-1">
+        <SidebarGroup>
+          <SidebarGroupLabel>Receipts</SidebarGroupLabel>
+          <SidebarGroupAction asChild>
+            <Link to="/dashboard/new">
+              <Plus />
+            </Link>
+          </SidebarGroupAction>
+          <SidebarGroupContent>
+            <Button
+              variant="ghost"
+              className="flex flex-row items-center justify-start text-start mx-2"
+              asChild
+            >
+              <Link to="/dashboard/list">
+                <List className="size-5" />
+                <span>List</span>
+              </Link>
+            </Button>
+          </SidebarGroupContent>
+        </SidebarGroup>
+      </SidebarContent>
       <SidebarFooter className="mt-auto">
         <SidebarGroup>
           <SidebarMenu>
