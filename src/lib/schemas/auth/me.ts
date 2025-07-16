@@ -1,4 +1,4 @@
-export type ApiMeResponse = {
+export type ApiMeRes = {
   id: string;
   username: string;
   email: string;

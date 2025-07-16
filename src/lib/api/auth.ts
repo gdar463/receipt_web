@@ -1,7 +1,7 @@
 import type z from "zod";
 
 import type { loginSchema } from "@s/auth/login";
-import type { ApiMeResponse } from "@s/auth/me";
+import type { ApiMeRes } from "@s/auth/me";
 import type { signupSchema } from "@s/auth/signup";
 
 import type { userSchema } from "../schemas/auth";
@@ -26,7 +26,7 @@ export async function apiSignup(
   return res.json();
 }
 
-export async function apiMe(token: string): Promise<ApiMeResponse> {
+export async function apiMe(token: string): Promise<ApiMeRes> {
   const res = await get("/me", {
     headers: {
       Authorization: `Bearer ${token}`,
