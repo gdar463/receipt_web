@@ -28,7 +28,14 @@ export async function get(route: string, options?: Options) {
 
 export async function post(route: string, options?: Options) {
   return ky.post(API_URL + route, {
-    ...options,
     ...hooks,
+    ...options,
+  });
+}
+
+export async function httpDelete(route: string, options?: Options) {
+  return ky.delete(API_URL + route, {
+    ...hooks,
+    ...options,
   });
 }
