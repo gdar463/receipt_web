@@ -31,8 +31,8 @@ export const Route = createFileRoute("/_authed/dashboard")({
 
 function RouteComponent() {
   return (
-    <div className="flex flex-col">
-      <SidebarProvider>
+    <div className="flex flex-col min-h-svh">
+      <SidebarProvider className="min-h-svh">
         <DashSidebar />
         <SidebarInset>
           <header className="w-full bg-background border-b sticky">
@@ -40,7 +40,7 @@ function RouteComponent() {
               <Trigger />
             </div>
           </header>
-          <div className="m-2">
+          <div className="m-2 h-full">
             <Outlet />
           </div>
         </SidebarInset>
