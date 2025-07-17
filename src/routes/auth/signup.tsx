@@ -156,11 +156,12 @@ function RouteComponent() {
                     </FormItem>
                   )}
                 />
-                {mutation.isPending ? (
-                  <Button disabled>Signing up...</Button>
-                ) : (
-                  <Button type="submit">Sign up</Button>
-                )}
+                <Button
+                  type="submit"
+                  disabled={mutation.isPending ? true : false}
+                >
+                  {mutation.isPending ? "Signing up..." : "Sign up"}
+                </Button>
               </form>
             </Form>
           </CardContent>
