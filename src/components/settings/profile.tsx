@@ -1,3 +1,4 @@
+import { DateTime } from "luxon";
 import type { ReactNode } from "react";
 
 import { useAuth } from "@/lib/auth";
@@ -8,6 +9,15 @@ import { Separator } from "../ui/separator";
 export function ProfileTab() {
   const auth = useAuth();
   const settings = useSettings();
+  const creationTime = DateTime.fromJSDate(new Date(auth.user!.createdAt!), {
+    zone: settings.options?.dateLocale.key,
+  }).toLocaleString({
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+  });
 
   return (
     <div className="flex flex-col gap-3">
@@ -50,7 +60,7 @@ export function ProfileTab() {
             The Date you created your account.
           </ProfileSectionDesc>
         </ProfileSectionHeader>
-        <div className="font-medium">{auth.user?.createdAt.toUTCString()}</div>
+        <div className="font-medium">{creationTime}</div>
       </ProfileSection>
     </div>
   );

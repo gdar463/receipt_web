@@ -1,3 +1,4 @@
+import { DateTime } from "luxon";
 import {
   type ReactNode,
   createContext,
@@ -6,10 +7,19 @@ import {
   useEffect,
   useState,
 } from "react";
+import z from "zod";
 
-export type Settings = {
-  streamerMode: boolean;
-};
+import { timezones } from "@/components/timezoneSelector";
+
+export const settingsSchema = z.object({
+  streamerMode: z.boolean().default(false),
+  dateLocale: z.object({
+    name: z.string().default("Rome"),
+    key: z.string().default("Europe/Rome"),
+  }),
+});
+
+export type Settings = z.infer<typeof settingsSchema>;
 
 export interface SettingsContext {
   setSetting: <T extends keyof Settings>(key: T, value: Settings[T]) => void;
@@ -25,7 +35,7 @@ function getStoreSettings() {
   if (val == null) {
     return null;
   }
-  return JSON.parse(val);
+  return settingsSchema.parse(JSON.parse(val)!);
 }
 
 function setStoreSettings(options: Settings | null) {
@@ -37,7 +47,14 @@ function setStoreSettings(options: Settings | null) {
 }
 
 export function SettingsProvider({ children }: { children: ReactNode }) {
-  const [settings, setSettings] = useState<Settings>({ streamerMode: false });
+  const [settings, setSettings] = useState<Settings>({
+    streamerMode: false,
+    dateLocale: timezones.find((val) => {
+      if (DateTime.local().zoneName === val.key) {
+        return val;
+      }
+    })!,
+  });
 
   const setSetting = useCallback(
     <T extends keyof Settings>(key: T, value: Settings[T]) => {
@@ -48,7 +65,7 @@ export function SettingsProvider({ children }: { children: ReactNode }) {
   );
 
   useEffect(() => {
-    setSettings(getStoreSettings());
+    setSettings(getStoreSettings()!);
   }, []);
 
   return (
