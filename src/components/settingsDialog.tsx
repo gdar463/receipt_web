@@ -94,7 +94,7 @@ export function SettingsDialog({
               <SidebarHeader>
                 <SidebarMenu>
                   <div className="container flex h-14 items-center justify-between">
-                    <span className="text-xl font-semibold mt-3 px-3 font-[Parkinsans]">
+                    <span className="text-xl font-semibold mt-3 px-3 font-parkinsans">
                       Settings
                     </span>
                   </div>

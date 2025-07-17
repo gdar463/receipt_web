@@ -28,7 +28,7 @@ export function DashSidebar() {
     <Sidebar>
       <SidebarHeader>
         <div className="container flex h-14 items-center justify-between">
-          <span className="text-xl font-semibold px-3 font-[Parkinsans]">
+          <span className="text-xl font-semibold px-3 font-parkinsans">
             Receipt Tracker
           </span>
         </div>

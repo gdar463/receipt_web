@@ -42,6 +42,7 @@
   --font-dm: "DM Sans Variable", var(--font-sans);
   --font-inter: "Inter Variable", var(--font-sans);
   --font-montserrat: "Montserrat Variable", var(--font-sans);
+  --font-parkinsans: "Parkinsans", var(--font-sans);
 }
 
 @theme inline {
