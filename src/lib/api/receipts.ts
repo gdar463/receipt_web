@@ -16,38 +16,38 @@ export async function apiList(token: string): Promise<ListReceipt[]> {
   return res.json();
 }
 
-export async function apiCreateReceipt(
-  formData: z.infer<typeof createReceiptSchema>,
-  token: string,
-): Promise<CreateReceiptRes> {
+export async function apiCreateReceipt(data: {
+  formData: z.infer<typeof createReceiptSchema>;
+  token: string;
+}): Promise<CreateReceiptRes> {
   const res = await post("/receipt", {
-    json: formData,
+    json: data.formData,
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${data.token}`,
     },
   });
   return res.json();
 }
 
-export async function apiGetReceipt(
-  id: string,
-  token: string,
-): Promise<Receipt> {
-  const res = await get(`/receipt/${id}`, {
+export async function apiGetReceipt(data: {
+  id: string;
+  token: string;
+}): Promise<Receipt> {
+  const res = await get(`/receipt/${data.id}`, {
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${data.token}`,
     },
   });
   return res.json();
 }
 
-export async function apiDeleteReceipt(
-  id: string,
-  token: string,
-): Promise<void> {
-  await httpDelete(`/receipt/${id}`, {
+export async function apiDeleteReceipt(data: {
+  id: string;
+  token: string;
+}): Promise<void> {
+  await httpDelete(`/receipt/${data.id}`, {
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${data.token}`,
     },
   });
 }
