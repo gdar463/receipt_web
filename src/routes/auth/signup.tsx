@@ -55,7 +55,7 @@ function RouteComponent() {
       }
     },
     onSuccess(data) {
-      auth.login(data);
+      auth.login({ ...data, createdAt: new Date(data.createdAt) });
       navigate({ to: redirect });
     },
   });
