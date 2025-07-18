@@ -40,9 +40,7 @@ function RouteComponent() {
               <Trigger />
             </div>
           </header>
-          <div className="m-2 h-full">
-            <Outlet />
-          </div>
+          <Outlet />
         </SidebarInset>
       </SidebarProvider>
       <div className="fixed bottom-4 right-4 z-50">
