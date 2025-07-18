@@ -18,6 +18,7 @@ import { Route as AuthLoginRouteImport } from './routes/auth/login'
 import { Route as AuthedDashboardRouteImport } from './routes/_authed/dashboard'
 import { Route as AuthedDashboardNewRouteImport } from './routes/_authed/dashboard/new'
 import { Route as AuthedDashboardListRouteImport } from './routes/_authed/dashboard/list'
+import { Route as AuthedDashboardReceiptIdRouteImport } from './routes/_authed/dashboard/receipt/$id'
 
 const AuthRoute = AuthRouteImport.update({
   id: '/auth',
@@ -62,6 +63,12 @@ const AuthedDashboardListRoute = AuthedDashboardListRouteImport.update({
   path: '/list',
   getParentRoute: () => AuthedDashboardRoute,
 } as any)
+const AuthedDashboardReceiptIdRoute =
+  AuthedDashboardReceiptIdRouteImport.update({
+    id: '/receipt/$id',
+    path: '/receipt/$id',
+    getParentRoute: () => AuthedDashboardRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/auth': typeof AuthRouteWithChildren
@@ -71,6 +78,7 @@ export interface FileRoutesByFullPath {
   '/': typeof LandingIndexRoute
   '/dashboard/list': typeof AuthedDashboardListRoute
   '/dashboard/new': typeof AuthedDashboardNewRoute
+  '/dashboard/receipt/$id': typeof AuthedDashboardReceiptIdRoute
 }
 export interface FileRoutesByTo {
   '/auth': typeof AuthRouteWithChildren
@@ -80,6 +88,7 @@ export interface FileRoutesByTo {
   '/': typeof LandingIndexRoute
   '/dashboard/list': typeof AuthedDashboardListRoute
   '/dashboard/new': typeof AuthedDashboardNewRoute
+  '/dashboard/receipt/$id': typeof AuthedDashboardReceiptIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -92,6 +101,7 @@ export interface FileRoutesById {
   '/_landing/': typeof LandingIndexRoute
   '/_authed/dashboard/list': typeof AuthedDashboardListRoute
   '/_authed/dashboard/new': typeof AuthedDashboardNewRoute
+  '/_authed/dashboard/receipt/$id': typeof AuthedDashboardReceiptIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -103,6 +113,7 @@ export interface FileRouteTypes {
     | '/'
     | '/dashboard/list'
     | '/dashboard/new'
+    | '/dashboard/receipt/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/auth'
@@ -112,6 +123,7 @@ export interface FileRouteTypes {
     | '/'
     | '/dashboard/list'
     | '/dashboard/new'
+    | '/dashboard/receipt/$id'
   id:
     | '__root__'
     | '/_authed'
@@ -123,6 +135,7 @@ export interface FileRouteTypes {
     | '/_landing/'
     | '/_authed/dashboard/list'
     | '/_authed/dashboard/new'
+    | '/_authed/dashboard/receipt/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -196,17 +209,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthedDashboardListRouteImport
       parentRoute: typeof AuthedDashboardRoute
     }
+    '/_authed/dashboard/receipt/$id': {
+      id: '/_authed/dashboard/receipt/$id'
+      path: '/receipt/$id'
+      fullPath: '/dashboard/receipt/$id'
+      preLoaderRoute: typeof AuthedDashboardReceiptIdRouteImport
+      parentRoute: typeof AuthedDashboardRoute
+    }
   }
 }
 
 interface AuthedDashboardRouteChildren {
   AuthedDashboardListRoute: typeof AuthedDashboardListRoute
   AuthedDashboardNewRoute: typeof AuthedDashboardNewRoute
+  AuthedDashboardReceiptIdRoute: typeof AuthedDashboardReceiptIdRoute
 }
 
 const AuthedDashboardRouteChildren: AuthedDashboardRouteChildren = {
   AuthedDashboardListRoute: AuthedDashboardListRoute,
   AuthedDashboardNewRoute: AuthedDashboardNewRoute,
+  AuthedDashboardReceiptIdRoute: AuthedDashboardReceiptIdRoute,
 }
 
 const AuthedDashboardRouteWithChildren = AuthedDashboardRoute._addFileChildren(
