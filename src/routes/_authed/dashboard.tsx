@@ -31,8 +31,8 @@ export const Route = createFileRoute("/_authed/dashboard")({
 
 function RouteComponent() {
   return (
-    <div className="flex flex-col min-h-svh">
-      <SidebarProvider className="min-h-svh">
+    <div className="flex flex-col min-h-dvh">
+      <SidebarProvider className="min-h-dvh">
         <DashSidebar />
         <SidebarInset>
           <header className="w-full bg-background border-b sticky">

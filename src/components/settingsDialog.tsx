@@ -72,7 +72,7 @@ export function SettingsDialog({
         <div className={className}>{children}</div>
       </DialogTrigger>
       <DialogContent
-        className="[&>button]:hidden min-w-[50svw] min-h-[70svh] flex flex-col"
+        className="[&>button]:hidden min-w-[50dvw] min-h-[70dvh] flex flex-col"
         onCloseAutoFocus={() => {}}
       >
         <DialogHeader className="items-end">
