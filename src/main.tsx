@@ -2,7 +2,9 @@ import "@fontsource-variable/dm-sans/wght.css";
 import "@fontsource-variable/inter/wght.css";
 import "@fontsource-variable/montserrat/wght.css";
 import "@fontsource/parkinsans/index.css";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { createAsyncStoragePersister } from "@tanstack/query-async-storage-persister";
+import { QueryClient } from "@tanstack/react-query";
+import { PersistQueryClientProvider } from "@tanstack/react-query-persist-client";
 import { RouterProvider, createRouter } from "@tanstack/react-router";
 import { StrictMode } from "react";
 import { CookiesProvider } from "react-cookie";
@@ -17,9 +19,14 @@ const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
       refetchOnWindowFocus: false,
-      staleTime: 1000 * 30,
+      staleTime: 30_000,
+      gcTime: 60_000 * 60 * 24 * 7,
     },
   },
+});
+
+const persister = createAsyncStoragePersister({
+  storage: localStorage,
 });
 
 const router = createRouter({
@@ -43,12 +50,15 @@ function InnerApp() {
   const devActive = localStorage.getItem("receipts.dev");
 
   return (
-    <QueryClientProvider client={queryClient}>
+    <PersistQueryClientProvider
+      client={queryClient}
+      persistOptions={{ persister }}
+    >
       <RouterProvider
         router={router}
         context={{ auth, settings, devTools: !!devActive }}
       />
-    </QueryClientProvider>
+    </PersistQueryClientProvider>
   );
 }
 
