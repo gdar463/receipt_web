@@ -5,7 +5,8 @@ import { ApiError } from "./errors";
 
 const API_URL = import.meta.env.API_URL || "http://localhost:3000/api";
 
-const hooks = {
+const common: Options = {
+  retry: 0,
   hooks: {
     beforeError: [
       async (error: HTTPError<unknown>) => {
@@ -21,21 +22,21 @@ const hooks = {
 
 export async function get(route: string, options?: Options) {
   return ky.get(API_URL + route, {
-    ...hooks,
+    ...common,
     ...options,
   });
 }
 
 export async function post(route: string, options?: Options) {
   return ky.post(API_URL + route, {
-    ...hooks,
+    ...common,
     ...options,
   });
 }
 
 export async function httpDelete(route: string, options?: Options) {
   return ky.delete(API_URL + route, {
-    ...hooks,
+    ...common,
     ...options,
   });
 }
