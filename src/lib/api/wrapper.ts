@@ -20,14 +20,14 @@ const common: Options = {
   },
 };
 
-export async function get(route: string, options?: Options) {
+export async function httpGet(route: string, options?: Options) {
   return ky.get(API_URL + route, {
     ...common,
     ...options,
   });
 }
 
-export async function post(route: string, options?: Options) {
+export async function httpPost(route: string, options?: Options) {
   return ky.post(API_URL + route, {
     ...common,
     ...options,

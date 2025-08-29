@@ -5,10 +5,10 @@ import type { ListReceipt } from "@s/receipt/list";
 
 import type { Receipt } from "../schemas/receipt";
 
-import { get, httpDelete, post } from "./wrapper";
+import { httpDelete, httpGet, httpPost } from "./wrapper";
 
 export async function apiList(token: string): Promise<ListReceipt[]> {
-  const res = await get("/receipt", {
+  const res = await httpGet("/receipt", {
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -20,7 +20,7 @@ export async function apiCreateReceipt(data: {
   formData: z.infer<typeof createReceiptSchema>;
   token: string;
 }): Promise<CreateReceiptRes> {
-  const res = await post("/receipt", {
+  const res = await httpPost("/receipt", {
     json: data.formData,
     headers: {
       Authorization: `Bearer ${data.token}`,
@@ -33,7 +33,7 @@ export async function apiGetReceipt(data: {
   id: string;
   token: string;
 }): Promise<Receipt> {
-  const res = await get(`/receipt/${data.id}`, {
+  const res = await httpGet(`/receipt/${data.id}`, {
     headers: {
       Authorization: `Bearer ${data.token}`,
     },
