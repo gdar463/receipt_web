@@ -3,7 +3,6 @@ import {
   createContext,
   useCallback,
   useContext,
-  useEffect,
   useState,
 } from "react";
 
@@ -25,10 +24,11 @@ export interface AuthContext {
 
 const AuthContext = createContext<AuthContext | null>(null);
 
-const key = "receipts.user";
+const userKey = "receipts.user";
+const isAuthedKey = "receipts.isAuthed";
 
 function getStoreUser() {
-  const val = localStorage.getItem(key);
+  const val = localStorage.getItem(userKey);
   if (val == null) {
     return null;
   }
@@ -37,28 +37,40 @@ function getStoreUser() {
 
 function setStoreUser(user: User | null) {
   if (user) {
-    localStorage.setItem(key, JSON.stringify(user));
+    localStorage.setItem(userKey, JSON.stringify(user));
   } else {
-    localStorage.removeItem(key);
+    localStorage.removeItem(userKey);
+  }
+}
+
+function getStoreIsAuthed() {
+  return !!sessionStorage.getItem(isAuthedKey);
+}
+
+function setStoreIsAuthed(val: boolean) {
+  if (val) {
+    sessionStorage.setItem(isAuthedKey, "yes");
+  } else {
+    sessionStorage.removeItem(isAuthedKey);
   }
 }
 
 export function AuthProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<User | null>(null);
-  const isAuthed = !!user;
+  const [user, setUser] = useState<User | null>(getStoreUser());
+  const [isAuthed, setIsAuthed] = useState<boolean>(getStoreIsAuthed());
 
   const login = useCallback(async (user: User) => {
     setStoreUser(user);
     setUser(user);
+    setStoreIsAuthed(true);
+    setIsAuthed(true);
   }, []);
 
   const logout = useCallback(async () => {
     setStoreUser(null);
     setUser(null);
-  }, []);
-
-  useEffect(() => {
-    setUser(getStoreUser());
+    setStoreIsAuthed(false);
+    setIsAuthed(false);
   }, []);
 
   return (
