@@ -4,8 +4,9 @@ import type { loginSchema } from "@s/auth/login";
 import type { signupSchema } from "@s/auth/signup";
 
 import type { userSchema } from "../schemas/auth";
+import type { RefreshResponse } from "../schemas/auth/refresh";
 
-import { httpPost } from "./wrapper";
+import { httpGet, httpPost } from "./wrapper";
 
 export async function apiLogin(
   formData: z.infer<typeof loginSchema>,
@@ -21,6 +22,15 @@ export async function apiSignup(
 ): Promise<z.infer<typeof userSchema>> {
   const res = await httpPost("/auth/signup", {
     json: formData,
+  });
+  return res.json();
+}
+
+export async function apiRefresh(token: string): Promise<RefreshResponse> {
+  const res = await httpGet("/auth/refresh", {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
   });
   return res.json();
 }
