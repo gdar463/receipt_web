@@ -8,6 +8,7 @@ export type ErrorCodes =
   | "CurrencyNotFound"
   | "ValidationFailed"
   | "NoGoogleLinked"
+  | "GoogleInvalidGrant"
   | "GoogleFailed"
   | "ReceiptNotFound"
   | "NameAlreadyExists"
