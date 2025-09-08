@@ -27,6 +27,7 @@ export const Route = createFileRoute("/_authed/dashboard")({
       throw redirect({ to: "/dashboard/list" });
     }
   },
+  staleTime: 600_000,
 });
 
 function RouteComponent() {
