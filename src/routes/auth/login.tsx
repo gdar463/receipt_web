@@ -55,7 +55,11 @@ function RouteComponent() {
       }
     },
     onSuccess(data) {
-      auth.login({ ...data, createdAt: new Date(data.createdAt) });
+      auth.login({
+        ...data,
+        createdAt: new Date(data.createdAt),
+        googleEmail: null,
+      });
       navigate({ to: redirect });
     },
   });

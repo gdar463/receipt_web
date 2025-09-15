@@ -13,12 +13,14 @@ export type User = {
   email: string;
   createdAt: Date;
   token: string;
+  googleEmail: string | null;
 };
 
 export interface AuthContext {
   isAuthed: boolean;
   login: (user: User) => Promise<void>;
   logout: () => Promise<void>;
+  setGoogleEmail: (email: string | null) => Promise<void>;
   user: User | null;
 }
 
@@ -73,8 +75,24 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setIsAuthed(false);
   }, []);
 
+  const setGoogleEmail = useCallback(async (email: string | null) => {
+    const newUser: User = {
+      id: user!.id,
+      username: user!.username,
+      displayName: user!.displayName,
+      email: user!.email,
+      createdAt: user!.createdAt,
+      token: user!.token,
+      googleEmail: email,
+    };
+    setStoreUser(newUser);
+    setUser(newUser);
+  }, []);
+
   return (
-    <AuthContext.Provider value={{ isAuthed, login, logout, user }}>
+    <AuthContext.Provider
+      value={{ isAuthed, login, logout, setGoogleEmail, user }}
+    >
       {children}
     </AuthContext.Provider>
   );
