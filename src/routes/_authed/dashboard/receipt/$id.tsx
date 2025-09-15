@@ -100,7 +100,7 @@ function RouteComponent() {
           ) : (
             <img
               className="h-[48rem] w-[32rem] rounded-md"
-              src={`data:${res!.mime};base64,${btoa(res!.data)}`}
+              src={`${res!.data}`}
             />
           )}
         </div>
