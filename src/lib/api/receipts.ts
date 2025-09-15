@@ -1,9 +1,8 @@
 import type z from "zod";
 
+import type { Receipt } from "@s/receipt";
 import type { CreateReceiptRes, createReceiptSchema } from "@s/receipt/create";
 import type { ListReceipt } from "@s/receipt/list";
-
-import type { Receipt } from "../schemas/receipt";
 
 import { httpDelete, httpGet, httpPost } from "./wrapper";
 
