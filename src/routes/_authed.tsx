@@ -21,6 +21,7 @@ export const Route = createFileRoute("/_authed")({
         await context.auth.login({ ...context.auth.user, token: res.token });
       } catch (err) {
         if (err instanceof ApiError && err.code === "InvalidToken") {
+          await context.auth.logout();
           throw redirect({
             to: "/auth/login",
             search: {

@@ -7,7 +7,7 @@ export const Route = createFileRoute("/auth")({
   component: RouteComponent,
   validateSearch: zodValidator(authSearchSchema),
   beforeLoad: ({ context, search }) => {
-    if (context.auth.isAuthed) {
+    if (context.auth.user) {
       if (search.redirect) {
         throw redirect({
           to: search.redirect,
